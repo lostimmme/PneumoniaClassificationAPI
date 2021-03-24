@@ -1,0 +1,13 @@
+#For image translation into matrix
+numpy==1.19.5
+#For neural networks working
+Keras==2.4.3
+Keras-Applications==1.0.8
+#For neural networks backend
+tensorflow==2.4.1
+#For image translation from bytes
+opencv-python==4.5.1.48
+#For REST-API
+Flask==1.1.2
+#For processing http requests
+requests~=2.25.1
