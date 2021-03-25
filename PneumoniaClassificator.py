@@ -1,13 +1,11 @@
 import keras
-# import tensorflow
-import cv2
-from keras.preprocessing import image
-import base64
-import numpy as np
+import tensorflow
+from Preprocessor import Preprocessor
 
 
 class PneumoniaClassificator:
     __instance = None
+    __model = keras.models
 
     def __new__(cls, *args, **kwargs):
         if not isinstance(cls.__instance, cls):
@@ -21,12 +19,7 @@ class PneumoniaClassificator:
         return self.__instance
 
     def predict(self, img_bytes_string):
-        preprocessed_image = self.__preprocess(img_bytes_string)
-        self.__model
-    @staticmethod
-    def __preprocess(img_bytes_string):
-        image_base64_decode = base64.decodebytes(img_bytes_string)
-        arr_encode = np.fromstring(image_base64_decode, np.uint8)
-        preprocessed_image = cv2.imdecode(buf=arr_encode, flags=cv2.IMREAD_GRAYSCALE)
-
-        return preprocessed_image
+        preprocessed_image = Preprocessor.preprocess(img_bytes_string)
+        # Сделать проверку на выполнение set_model
+        result = self.__model.predict(preprocessed_image)
+        return result
