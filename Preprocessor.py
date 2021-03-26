@@ -1,6 +1,7 @@
-from base64 import decodestring
 from PIL import Image
 import numpy as np
+import base64
+import io
 
 
 class Preprocessor:
@@ -8,7 +9,8 @@ class Preprocessor:
     __height = 224
 
     def preprocess(self, img_bytes_string):
-        image = Image.fromstring('RGB', (self.__height, self.__width), decodestring(img_bytes_string))
+        image = base64.b64decode(str(img_bytes_string))
+        image = Image.open(io.BytesIO(image))
         array_image = np.array(image).astype(np.float32)
         array_image = np.expand_dims(array_image, axis=0)
         array_image /= 255.
