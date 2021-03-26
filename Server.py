@@ -10,3 +10,7 @@ def index():
     data = request.data
     prediction = model.predict(data)
     return jsonify({"ImageClass": str(prediction)})
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
