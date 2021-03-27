@@ -11,3 +11,5 @@ opencv-python==4.5.1.48
 Flask==1.1.2
 #For processing http requests
 requests~=2.25.1
+#For images
+Pillow==8.1.2

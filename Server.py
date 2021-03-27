@@ -9,4 +9,8 @@ model = PneumoniaClassificator().get_instance().set_model('weights/mobilenet_wei
 def index():
     data = request.data
     prediction = model.predict(data)
-    return jsonify({"ImageClass": str(prediction)})
+    return jsonify({"PneumoniaProbability": str(prediction)})
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
