@@ -4,8 +4,8 @@ from keras.optimizers import Adam
 from keras.losses import binary_crossentropy
 from Postprocessor import Postprocessor
 
-PATH_TO_MODEL_JSON = 'models_json/mobilenet_architecture.json'
-PATH_TO_WEIGHTS_H5 = 'weights/mobilenet_weights.h5'
+PATH_TO_MODEL_JSON = 'models_json/model.json'
+PATH_TO_WEIGHTS_H5 = 'weights/weights.h5'
 
 
 class PneumoniaClassificator:
@@ -22,6 +22,7 @@ class PneumoniaClassificator:
             self.__model.load_weights(weights_file_path)
         except AttributeError:
             raise Exception("Model architecture not loaded!")
+        return self.__model
 
     def set_model_architecture(self, architecture_file_path=PATH_TO_MODEL_JSON):
         try:
@@ -33,9 +34,7 @@ class PneumoniaClassificator:
             optimizer=Adam(lr=1e-3),
             loss=binary_crossentropy,
             metrics=['accuracy'])
-
-    def get_instance(self):
-        return self.__instance
+        return self.__model
 
     def predict(self, img_bytes_string):
         preprocessor = Preprocessor()

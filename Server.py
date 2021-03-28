@@ -2,7 +2,9 @@ from flask import Flask, jsonify, request
 from PneumoniaClassificator import PneumoniaClassificator
 
 app = Flask(__name__)
-model = PneumoniaClassificator().get_instance().set_model('weights/mobilenet_weights.h5')
+model = PneumoniaClassificator()
+model.set_model_architecture()
+model.set_model_weights()
 
 
 @app.route("/predict_pneumonia", methods=["POST"])
