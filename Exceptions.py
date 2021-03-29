@@ -7,3 +7,8 @@ class ModelArchitectureNotLoaded(Exception):
 class IncorrectImageSize(Exception):
     """If you are trying to set incorrect size to image this exception will be raised"""
     pass
+
+
+class ModelFileNotFounded(Exception):
+    """If file with model not founded this exception will be raised"""
+    pass
